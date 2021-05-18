@@ -37,13 +37,13 @@ def prob():
 		print(formValues)
 		for key in formValues:
 
-			if formValues[key][0] == '':
+			if formValues[key] == '':
 
 				formValues[key] = default[key]
 
-			else:
+			# else:
 
-				formValues[key] = formValues[key][0]
+			# 	formValues[key] = formValues[key][0]
 
 
 		inputValues = [list(formValues.values())]
