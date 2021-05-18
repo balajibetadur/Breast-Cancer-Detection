@@ -34,6 +34,7 @@ def prob():
 					 }
 
 
+		print(formValues)
 		for key in formValues:
 
 			if formValues[key][0] == '':
@@ -53,11 +54,11 @@ def prob():
 
 		if result[0] > result[1]:
 
-			output = ['Begnin', round(result[0], 2)]
+			output = ['Begnin', round(result[0], 2) * 100]
 
 		elif result[1] > result[0]:
 
-			output = ['Malignant', round(result[1], 2)]
+			output = ['Malignant', round(result[1], 2) * 100]
 
 		return render_template('index.html', output = output)
 
