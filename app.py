@@ -1,11 +1,14 @@
 from flask import Flask,render_template,request
-app = Flask(__name__)
 import pickle
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+
+
+app = Flask(__name__)
+
 
 @app.route('/',methods=["GET","POST"])
 def prob():
@@ -35,15 +38,17 @@ def prob():
 
 
 		print(formValues)
+
 		for key in formValues:
 
-			if formValues[key] == '':
+			if formValues[key][0] == '':
 
 				formValues[key] = default[key]
 
-			# else:
+			else:
 
-			# 	formValues[key] = formValues[key][0]
+				formValues[key] = float(formValues[key][0])
+
 
 
 		inputValues = [list(formValues.values())]
