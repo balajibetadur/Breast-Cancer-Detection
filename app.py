@@ -39,31 +39,40 @@ def prob():
 
 		print(formValues)
 
+		flag = False
 		for key in formValues:
 
-			if formValues[key][0] == '':
+			if formValues[key] == '':
 
 				formValues[key] = default[key]
 
 			else:
 
 				formValues[key] = float(formValues[key][0])
+				flag = True
 
 
+		if flag:
 
-		inputValues = [list(formValues.values())]
+			inputValues = [list(formValues.values())]
 
-		model = pickle.load(open('model.pkl', 'rb'))
+			model = pickle.load(open('model.pkl', 'rb'))
 
-		result = model.predict_proba(inputValues)[0]
+			result = model.predict_proba(inputValues)[0]
 
-		if result[0] > result[1]:
+			if result[0] > result[1]:
 
-			output = ['Begnin', round(result[0], 2) * 100]
+				output = ['Begnin', round(result[0], 2) * 100]
+				output = f"The result is {output[0]} with the probability of {output[1]} %"
 
-		elif result[1] > result[0]:
+			elif result[1] > result[0]:
 
-			output = ['Malignant', round(result[1], 2) * 100]
+				output = ['Malignant', round(result[1], 2) * 100]
+				output = f"The result is {output[0]} with the probability of {output[1]} %"
+
+		else:
+
+			output = 'Enter atleast 1 input and try again!!'
 
 		return render_template('index.html', output = output)
 
